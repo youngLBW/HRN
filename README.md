@@ -1,15 +1,17 @@
 # HRN
 
+### [Project](https://younglbw.github.io/HRN-homepage/) | [Paper](https://arxiv.org/abs/2302.14434) | [ModelScope](https://www.modelscope.cn/models/damo/cv_resnet50_face-reconstruction/summary)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/a-hierarchical-representation-network-for/3d-face-reconstruction-on-realy)](https://paperswithcode.com/sota/3d-face-reconstruction-on-realy?p=a-hierarchical-representation-network-for) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/a-hierarchical-representation-network-for/3d-face-reconstruction-on-realy-side-view)](https://paperswithcode.com/sota/3d-face-reconstruction-on-realy-side-view?p=a-hierarchical-representation-network-for)
+
 This repository is the official implementation of [HRN](https://arxiv.org/abs/2302.14434).
 
 
 > **[A Hierarchical Representation Network for Accurate and Detailed Face Reconstruction from In-The-Wild Images](https://arxiv.org/abs/2302.14434)** </br>
 > Biwen Lei, Jianqiang Ren, Mengyang Feng, Miaomiao Cui, Xuansong Xie</br>
 > In CVPR 2023</br>
+> [DAMO Academy, Alibaba Group](https://damo.alibaba.com), Hangzhou, China
 
-[DAMO Academy, Alibaba Group](https://damo.alibaba.com), Hangzhou, China
-
-[Project](https://younglbw.github.io/HRN-homepage/) | [Paper](https://arxiv.org/abs/2302.14434) | [ModelScope](https://www.modelscope.cn/models/damo/cv_resnet50_face-reconstruction/summary)
 
 ![teaser](assets/teaser/teaser.jpg)
 We present a novel hierarchical representation network (HRN) to achieve accurate and detailed face reconstruction from a single image. Specifically, we implement the geometry disentanglement and introduce the hierarchical representation to fulfill detailed face modeling.
