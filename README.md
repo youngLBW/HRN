@@ -120,6 +120,7 @@ There are some functions or scripts in this implementation that are based on ext
 Here are some great resources we benefit:  
 - [Deep3DFaceRecon_pytorch](https://github.com/sicxu/Deep3DFaceRecon_pytorch) for the base model of HRN.
 - [DECA](https://pytorch3d.org/), [Pytorch3D](https://github.com/facebookresearch/pytorch3d), [nvdiffrast](https://github.com/NVlabs/nvdiffrast) for rendering.
+- [pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) for the image translation network.
 - [retinaface](https://github.com/biubug6/Pytorch_Retinaface) for face detector.
 - [face-alignment](https://github.com/1adrianb/face-alignment) for cropping.
 - [FAN](https://github.com/1adrianb/2D-and-3D-face-alignment) for landmark detection.
