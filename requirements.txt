@@ -4,6 +4,7 @@ torchvision==0.7.0
 tensorflow-gpu==2.3.0
 opencv-python==4.5.5.64
 opencv-python-headless==4.5.5.64
+protobuf==3.20.1
 tqdm
 kornia
 pillow
