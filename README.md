@@ -18,6 +18,7 @@ We present a novel hierarchical representation network (HRN) to achieve accurate
 
 ## News
 
+* [04/21/2023] Add the codes of exporting mesh with high frequency details.
 * [04/19/2023] The source codes are available!
 * [03/01/2023] HRN achieved top-1 results on single image face reconstruction benchmark [REALY](https://realy3dface.com/)!
 * [02/28/2023] Paper [HRN](https://arxiv.org/abs/2302.14434) released!
@@ -32,11 +33,11 @@ Clone the repo:
 ### Requirements
 **This implementation is only tested under Ubuntu/CentOS environment with Nvidia GPUs and CUDA installed.**
 
-* Python >= 3.6
+* Python >= 3.8
 * PyTorch >= 1.6
 * Basic requirements, you can run 
   ```bash
-  conda create -n HRN python=3.6
+  conda create -n HRN python=3.8
   source activate HRN
   pip install -r requirements.txt
   ```
@@ -84,12 +85,13 @@ Clone the repo:
 We haven't released the training code yet.
 
 ## Note
-This implementation has made a few changes on the basis of the original HRN to improve the effect and robustness:
+1. This implementation has made a few changes on the basis of the original HRN to improve the effect and robustness:
 
-- Introduce a valid mask to alleviate the interference caused by the occlusion of objects such as hair.
-- Re-implement texture map generation and re-alignment module, which is faster than the original implementation.
-- Introduce two trainable parameters α and β to improve the training stability at the beginning stage.
+    - Introduce a valid mask to alleviate the interference caused by the occlusion of objects such as hair.
+    - Re-implement texture map generation and re-alignment module, which is faster than the original implementation.
+    - Introduce two trainable parameters α and β to improve the training stability at the beginning stage.
 
+2. The displacement map is designed to apply on the rendering process, so the effect of the exported mesh with high frequency details may not be as ideal as the rendered 2D image. 
 
 
 ## Results

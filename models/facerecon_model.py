@@ -8,7 +8,7 @@ from .losses import perceptual_loss, photo_loss, reg_loss, reflectance_loss, lan
 from util import util_
 from util.nv_diffrast import MeshRenderer
 import os
-from util.util_ import read_obj, write_obj2, viz_flow, split_vis, estimate_normals, write_video
+from util.util_ import read_obj, write_obj2, viz_flow, split_vis, estimate_normals, write_video, crop_mesh
 import time
 from models.de_retouching_module import DeRetouchingModule
 from pix2pix.pix2pix_model import Pix2PixModel
@@ -794,12 +794,19 @@ class FaceReconModel(BaseModel):
         vertices_batch[..., -1] = 10 - vertices_batch[..., -1]  # from camera space to world space
         vertices_batch = vertices_batch.cpu().numpy()
 
+        # dense mesh
+        dense_vertices_batch = self.extra_results['dense_mesh']['vertices']
+        dense_vertices_batch = dense_vertices_batch.detach().cpu().numpy()
+        dense_faces_batch = self.extra_results['dense_mesh']['faces'].detach().cpu().numpy()
+
+
         texture_map_batch = (255.0 * self.pred_color_high).permute(0, 2, 3, 1).detach().cpu().numpy()[..., ::-1]
 
         for i in range(batch_size):
             cv2.imwrite(os.path.join(out_dir, save_name + '_{}_hrn_output.jpg'.format(i)), hrn_output_vis_batch[i])
             # split_vis(os.path.join(out_dir, save_name + '_{}_hrn_output.jpg'.format(i)))
 
+            # export mesh with mid frequency details
             texture_map = texture_map_batch[i]
             vertices = vertices_batch[i]
             normals = estimate_normals(vertices, self.facemodel_front.face_buf.cpu().numpy())
@@ -813,6 +820,16 @@ class FaceReconModel(BaseModel):
             }
             write_obj2(os.path.join(out_dir, save_name + '_{}_hrn_mid_mesh.obj'.format(i)), face_mesh)
             results['face_mesh'] = face_mesh
+
+            # export mesh with mid and high frequency details
+            dense_mesh = {
+                'vertices': dense_vertices_batch[i],
+                'faces': dense_faces_batch[i],
+            }
+            vertices_zero = dense_mesh['vertices'] == 0.0
+            keep_inds = np.where((vertices_zero[:, 0] * vertices_zero[:, 1] * vertices_zero[:, 2]) == False)[0]
+            dense_mesh, _ = crop_mesh(dense_mesh, keep_inds)  # remove the redundant vertices and faces
+            write_obj2(os.path.join(out_dir, save_name + '_{}_hrn_high_mesh.obj'.format(i)), dense_mesh)
 
             pred_face_gray_list = []
             if 'pred_face_high_gray_list' in self.extra_results:

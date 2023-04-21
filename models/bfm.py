@@ -557,6 +557,22 @@ class ParametricFaceModel:
 
         return face_vertex, face_color_map, landmark, face_proj, face_albedo_map, face_shape_transformed, face_norm_roted, extra_results
 
+    def get_dense_mesh(self, uv_z, coarse_verts, coarse_normals):
+        ''' Convert displacement map into detail normal map
+        '''
+        batch_size = uv_z.shape[0]
+        uv_coarse_vertices = self.render.world2uv(coarse_verts)
+        uv_coarse_normals = self.render.world2uv(coarse_normals)
+
+        uv_detail_vertices = uv_coarse_vertices + uv_z * uv_coarse_normals
+        dense_vertices = uv_detail_vertices.permute(0, 2, 3, 1).reshape([batch_size, -1, 3])
+        dense_faces = self.render.dense_faces.expand(batch_size, -1, -1)
+        dense_mesh = {
+            'vertices': dense_vertices,
+            'faces': dense_faces,
+        }
+        return dense_mesh
+
     def compute_for_render_hierarchical_high(self, coeffs, displacement_uv, face_albedo_map, face_shape_transformed, face_norm_roted, extra_results=None):
 
         if type(coeffs) == dict:
@@ -567,6 +583,9 @@ class ParametricFaceModel:
         face_color_map = self.compute_color_with_displacement(face_albedo_map, face_shape_transformed, face_norm_roted, displacement_uv, coef_dict['gamma'])
 
         if extra_results is not None:
+            dense_mesh = self.get_dense_mesh(displacement_uv, face_shape_transformed, face_norm_roted)
+            extra_results['dense_mesh'] = dense_mesh
+
             extra_results['tex_high_color'] = face_color_map
 
             batch_size = face_albedo_map.shape[0]
