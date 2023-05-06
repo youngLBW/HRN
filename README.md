@@ -18,10 +18,18 @@ We present a novel hierarchical representation network (HRN) to achieve accurate
 
 ## News
 
+* [05/06/2023] The [ModelScope demo](https://www.modelscope.cn/models/damo/cv_resnet50_face-reconstruction/summary) and [Colab demo](https://colab.research.google.com/github/youngLBW/HRN/blob/main/notebooks/HRN_inference.ipynb) are available now!
 * [04/21/2023] Add the codes of exporting mesh with high frequency details.
 * [04/19/2023] The source codes are available!
 * [03/01/2023] HRN achieved top-1 results on single image face reconstruction benchmark [REALY](https://realy3dface.com/)!
 * [02/28/2023] Paper [HRN](https://arxiv.org/abs/2302.14434) released!
+
+## Web Demo
+- [Chinese version] Integrated into [ModelScope](https://www.modelscope.cn/models/damo/cv_resnet50_face-reconstruction/summary). Try out the Web Demo. [![ModelScope Spaces](
+https://img.shields.io/badge/ModelScope-Spaces-blue)](https://www.modelscope.cn/models/damo/cv_resnet50_face-reconstruction/summary)
+
+- Integrated into [Colab notebook](https://colab.research.google.com/github/youngLBW/HRN/blob/main/notebooks/HRN_inference.ipynb). Try out the colab demo. <a href="https://colab.research.google.com/github/youngLBW/HRN/blob/main/notebooks/HRN_inference.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a> 
+
 
 ## Getting Started
 Clone the repo:
@@ -56,6 +64,7 @@ Clone the repo:
   apt-get install libgles2-mesa-dev
   apt-get install libnvidia-gl-525
   ```
+  If there is a "[F glutil.cpp:338] eglInitialize() failed" error, you can try to change all the "dr.RasterizeGLContext" in util/nv_diffrast.py into "dr.RasterizeCudaContext".
 
 ### Testing with pre-trained network
 1. Prepare assets and pretrained models
