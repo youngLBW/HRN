@@ -2,8 +2,6 @@
 
 ### [Project](https://younglbw.github.io/HRN-homepage/) | [Paper](https://arxiv.org/abs/2302.14434) | [ModelScope](https://www.modelscope.cn/models/damo/cv_resnet50_face-reconstruction/summary)
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/a-hierarchical-representation-network-for/3d-face-reconstruction-on-realy)](https://paperswithcode.com/sota/3d-face-reconstruction-on-realy?p=a-hierarchical-representation-network-for) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/a-hierarchical-representation-network-for/3d-face-reconstruction-on-realy-side-view)](https://paperswithcode.com/sota/3d-face-reconstruction-on-realy-side-view?p=a-hierarchical-representation-network-for)
-
 This repository is the official implementation of [HRN](https://arxiv.org/abs/2302.14434).
 
 
@@ -18,10 +16,11 @@ We present a novel hierarchical representation network (HRN) to achieve accurate
 
 ## News
 
+* [08/29/2023] We extend HRN to head reconstruction. The code and models are released at [ModelScope](https://modelscope.cn/models/damo/cv_HRN_head-reconstruction/summary).
 * [05/06/2023] The [ModelScope demo](https://www.modelscope.cn/models/damo/cv_resnet50_face-reconstruction/summary) and [Colab demo](https://colab.research.google.com/github/youngLBW/HRN/blob/main/notebooks/HRN_inference.ipynb) are available now!
 * [04/21/2023] Add the codes of exporting mesh with high frequency details.
 * [04/19/2023] The source codes are available!
-* [03/01/2023] HRN achieved top-1 results on single image face reconstruction benchmark [REALY](https://realy3dface.com/)!
+* [03/01/2023] HRN achieved top-1 results on single image face reconstruction benchmark REALY!
 * [02/28/2023] Paper [HRN](https://arxiv.org/abs/2302.14434) released!
 
 ## Web Demo
